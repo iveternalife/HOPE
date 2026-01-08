@@ -104,122 +104,18 @@ export default function Globe3D() {
         style={{ maxWidth: '600px', maxHeight: '600px' }}
       />
       
-      {/* Mano protésica robótica */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-12">
-        <svg
-          width="300"
-          height="320"
-          viewBox="0 0 300 320"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="drop-shadow-2xl"
-        >
-          {/* Muñeca/antebrazo */}
-          <path
-            d="M120 280 L120 310 L180 310 L180 280 L175 260 L125 260 Z"
-            fill="url(#wristGradient)"
-            stroke="#4EE3D8"
-            strokeWidth="2"
-          />
-          
-          {/* Palma */}
-          <ellipse
-            cx="150"
-            cy="200"
-            rx="55"
-            ry="65"
-            fill="url(#palmGradient)"
-            stroke="#4EE3D8"
-            strokeWidth="2"
-          />
-          
-          {/* Pulgar */}
-          <path
-            d="M95 210 Q85 195 85 175 L90 165 Q95 160 100 165 L105 175 Q110 195 105 210 Z"
-            fill="url(#fingerGradient)"
-            stroke="#4EE3D8"
-            strokeWidth="2"
-          />
-          
-          {/* Dedo índice */}
-          <path
-            d="M125 135 L120 115 Q118 100 120 90 L125 85 Q130 83 135 85 L140 90 Q142 100 140 115 L135 135 Z"
-            fill="url(#fingerGradient)"
-            stroke="#4EE3D8"
-            strokeWidth="2"
-          />
-          
-          {/* Dedo medio */}
-          <path
-            d="M150 125 L145 100 Q143 80 145 65 L150 58 Q155 55 160 58 L165 65 Q167 80 165 100 L160 125 Z"
-            fill="url(#fingerGradient)"
-            stroke="#4EE3D8"
-            strokeWidth="2"
-          />
-          
-          {/* Dedo anular */}
-          <path
-            d="M175 135 L170 115 Q168 100 170 90 L175 85 Q180 83 185 85 L190 90 Q192 100 190 115 L185 135 Z"
-            fill="url(#fingerGradient)"
-            stroke="#4EE3D8"
-            strokeWidth="2"
-          />
-          
-          {/* Dedo meñique */}
-          <path
-            d="M200 150 L195 135 Q193 125 195 118 L200 113 Q205 111 210 113 L215 118 Q217 125 215 135 L210 150 Z"
-            fill="url(#fingerGradient)"
-            stroke="#4EE3D8"
-            strokeWidth="2"
-          />
-          
-          {/* Articulaciones y detalles mecánicos */}
-          <circle cx="130" cy="140" r="4" fill="#4EE3D8" />
-          <circle cx="150" cy="130" r="4" fill="#4EE3D8" />
-          <circle cx="175" cy="140" r="4" fill="#4EE3D8" />
-          <circle cx="200" cy="155" r="4" fill="#4EE3D8" />
-          <circle cx="100" cy="185" r="4" fill="#4EE3D8" />
-          
-          {/* Líneas mecánicas */}
-          <line x1="125" y1="140" x2="125" y2="165" stroke="#4EE3D8" strokeWidth="1" opacity="0.5" />
-          <line x1="150" y1="130" x2="150" y2="165" stroke="#4EE3D8" strokeWidth="1" opacity="0.5" />
-          <line x1="175" y1="140" x2="175" y2="165" stroke="#4EE3D8" strokeWidth="1" opacity="0.5" />
-          
-          {/* Circuitos decorativos */}
-          <path
-            d="M130 200 L135 205 L140 200"
-            stroke="#4EE3D8"
-            strokeWidth="1.5"
-            fill="none"
-            opacity="0.7"
-          />
-          <path
-            d="M160 200 L165 205 L170 200"
-            stroke="#4EE3D8"
-            strokeWidth="1.5"
-            fill="none"
-            opacity="0.7"
-          />
-          
-          {/* Gradientes */}
-          <defs>
-            <linearGradient id="palmGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#2F5FA0" stopOpacity="0.9" />
-              <stop offset="50%" stopColor="#1E3552" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#16283F" stopOpacity="1" />
-            </linearGradient>
-            
-            <linearGradient id="fingerGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#2F5FA0" stopOpacity="0.85" />
-              <stop offset="100%" stopColor="#16283F" stopOpacity="0.95" />
-            </linearGradient>
-            
-            <linearGradient id="wristGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#16283F" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#0B0E11" stopOpacity="1" />
-            </linearGradient>
-          </defs>
-        </svg>
+      {/* Mano protésica robótica real */}
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-16 w-full max-w-md">
+        <img
+          src="https://images.unsplash.com/photo-1751554933476-d029737d58b2"
+          alt="Mano protésica robótica"
+          className="w-full h-auto object-contain"
+          style={{
+            filter: 'drop-shadow(0 20px 40px rgba(78, 227, 216, 0.3)) hue-rotate(10deg) saturate(1.2)',
+            transform: 'scaleX(-1)',
+            mixBlendMode: 'lighten'
+          }}
+        />
       </div>
     </div>
   );
