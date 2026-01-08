@@ -104,7 +104,7 @@ export default function Globe3D() {
         }}
       >
         <img
-          src="https://customer-assets.emergentagent.com/job_849a39b8-4272-44df-8d68-b82bf307c661/artifacts/f48dmzyj_Imagen_de_WhatsApp_2026-01-08_a_las_14.14.43_7fcb0dfa-removebg-preview.png"
+          src="/assets/images/prosthetic-hand.png"
           alt="Mano protésica robótica"
           className="w-full h-auto object-contain"
           style={{
