@@ -105,16 +105,16 @@ export default function Globe3D() {
       />
       
       {/* Mano protésica robótica real */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-24 w-full max-w-lg">
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-28 w-full max-w-md">
         <img
-          src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b"
+          src="https://images.pexels.com/photos/6153354/pexels-photo-6153354.jpeg"
           alt="Mano protésica robótica"
           className="w-full h-auto object-contain"
           style={{
-            filter: 'drop-shadow(0 30px 60px rgba(78, 227, 216, 0.5)) brightness(0.9) contrast(1.2) hue-rotate(190deg) saturate(1.3)',
-            transform: 'scaleX(1) rotate(0deg)',
-            mixBlendMode: 'screen',
-            opacity: 0.95
+            filter: 'drop-shadow(0 35px 70px rgba(78, 227, 216, 0.6)) brightness(1.1) contrast(1.25) saturate(1.1)',
+            transform: 'scaleX(-1)',
+            mixBlendMode: 'lighten',
+            opacity: 0.92
           }}
         />
       </div>
