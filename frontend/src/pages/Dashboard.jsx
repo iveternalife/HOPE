@@ -1,258 +1,149 @@
 import React from 'react';
-import {
-  Box,
-  Container,
-  Flex,
-  VStack,
-  HStack,
-  Heading,
-  Text,
-  SimpleGrid,
-  Icon,
-  Badge,
-  Divider
-} from '@chakra-ui/react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import {
-  FaHome,
-  FaChartBar,
-  FaBullseye,
-  FaCog,
-  FaRobot,
-  FaUsers,
-  FaGlobeAmericas,
-  FaChartLine
-} from 'react-icons/fa';
+import { Link, useLocation } from 'react-router-dom';
+import { Home, BarChart3, Target, Settings, Activity, Users, Globe, TrendingDown } from 'lucide-react';
 import { statsData, missionData } from '../data/mockData';
+import { Badge } from '../components/ui/badge';
 
-const NavItem = ({ icon, children, to }) => {
+const NavItem = ({ icon: Icon, children, to }) => {
   const location = useLocation();
   const isActive = location.pathname === to;
 
   return (
-    <Box
-      as={RouterLink}
+    <Link
       to={to}
-      display="flex"
-      alignItems="center"
-      gap={3}
-      px={4}
-      py={3}
-      borderRadius="lg"
-      bg={isActive ? 'rgba(78, 227, 216, 0.1)' : 'transparent'}
-      color={isActive ? 'brand.300' : 'text.secondary'}
-      fontWeight={isActive ? 'semibold' : 'normal'}
-      transition="all 0.3s ease"
-      _hover={{
-        bg: 'rgba(78, 227, 216, 0.1)',
-        color: 'brand.300',
-        transform: 'translateX(4px)'
-      }}
+      className={`flex items-center gap-3 px-4 py-3 rounded-lg smooth-transition ${
+        isActive
+          ? 'bg-[#4EE3D8]/10 text-[#4EE3D8] font-semibold'
+          : 'text-[#9BAEC8] hover:bg-[#4EE3D8]/10 hover:text-[#4EE3D8] hover:translate-x-1'
+      }`}
     >
-      <Icon as={icon} boxSize={5} />
-      <Text>{children}</Text>
-    </Box>
+      <Icon size={20} />
+      <span>{children}</span>
+    </Link>
   );
 };
 
 const StatCard = ({ title, value, icon, trend, description }) => {
   const iconMap = {
-    robot: FaRobot,
-    users: FaUsers,
-    globe: FaGlobeAmericas,
-    'trending-down': FaChartLine
+    robot: Activity,
+    users: Users,
+    globe: Globe,
+    'trending-down': TrendingDown,
   };
-  const IconComponent = iconMap[icon] || FaRobot;
+  const IconComponent = iconMap[icon] || Activity;
 
   return (
-    <Box
-      bg="rgba(30, 53, 82, 0.4)"
-      backdropFilter="blur(10px)"
-      p={6}
-      borderRadius="xl"
-      border="1px solid"
-      borderColor="rgba(78, 227, 216, 0.1)"
-      boxShadow="0 8px 32px rgba(0, 0, 0, 0.2)"
-      position="relative"
-      overflow="hidden"
-    >
-      <Box
-        position="absolute"
-        top="-50%"
-        right="-50%"
-        w="150px"
-        h="150px"
-        bg="radial-gradient(circle, rgba(78, 227, 216, 0.1) 0%, transparent 70%)"
-        filter="blur(40px)"
+    <div className="glass-card rounded-xl p-6 relative overflow-hidden">
+      <div
+        className="absolute -top-1/2 -right-1/2 w-36 h-36"
+        style={{
+          background: 'radial-gradient(circle, rgba(78, 227, 216, 0.1) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+        }}
       />
-      <VStack spacing={3} align="flex-start" position="relative" zIndex={1}>
-        <HStack justify="space-between" w="full">
-          <Icon as={IconComponent} boxSize={8} color="brand.300" />
-          <Badge
-            colorScheme="green"
-            fontSize="xs"
-            px={2}
-            py={1}
-            borderRadius="md"
-            bg="rgba(78, 227, 216, 0.1)"
-            color="brand.300"
-          >
+      <div className="space-y-3 relative z-10">
+        <div className="flex justify-between items-start">
+          <IconComponent className="text-[#4EE3D8]" size={32} />
+          <Badge className="bg-[#4EE3D8]/10 text-[#4EE3D8] hover:bg-[#4EE3D8]/20">
             {trend}
           </Badge>
-        </HStack>
-        <Box>
-          <Text fontSize="3xl" fontWeight="bold" color="text.primary">
-            {value}
-          </Text>
-          <Text fontSize="sm" color="text.secondary" fontWeight="semibold">
-            {title}
-          </Text>
-        </Box>
-        <Text fontSize="xs" color="text.secondary">
-          {description}
-        </Text>
-      </VStack>
-    </Box>
+        </div>
+        <div>
+          <div className="text-3xl font-bold text-[#E6E8EA]">{value}</div>
+          <div className="text-sm text-[#9BAEC8] font-semibold">{title}</div>
+        </div>
+        <p className="text-xs text-[#9BAEC8]">{description}</p>
+      </div>
+    </div>
   );
 };
 
-const InfoCard = ({ title, content, icon }) => {
+const InfoCard = ({ title, content, icon: Icon }) => {
   return (
-    <Box
-      bg="rgba(30, 53, 82, 0.4)"
-      backdropFilter="blur(10px)"
-      p={8}
-      borderRadius="xl"
-      border="1px solid"
-      borderColor="rgba(78, 227, 216, 0.1)"
-      boxShadow="0 8px 32px rgba(0, 0, 0, 0.2)"
-      h="full"
-    >
-      <VStack spacing={4} align="flex-start">
-        <Icon as={icon} boxSize={10} color="brand.300" />
-        <Heading size="lg" color="text.primary">
-          {title}
-        </Heading>
-        <Text color="text.secondary" lineHeight="tall">
-          {content}
-        </Text>
-      </VStack>
-    </Box>
+    <div className="glass-card rounded-xl p-8 h-full">
+      <div className="space-y-4">
+        <Icon className="text-[#4EE3D8]" size={40} />
+        <h3 className="text-2xl font-bold text-[#E6E8EA]">{title}</h3>
+        <p className="text-[#9BAEC8] leading-relaxed">{content}</p>
+      </div>
+    </div>
   );
 };
 
 export default function Dashboard() {
   return (
-    <Flex minH="100vh" bg="bg.primary">
+    <div className="flex min-h-screen bg-[#0B0E11]">
       {/* Sidebar */}
-      <Box
-        w="280px"
-        bg="rgba(22, 40, 63, 0.6)"
-        backdropFilter="blur(10px)"
-        borderRight="1px solid"
-        borderColor="rgba(78, 227, 216, 0.1)"
-        p={6}
-        display={{ base: 'none', md: 'block' }}
-      >
-        <VStack spacing={8} align="stretch">
-          <Box>
-            <Text
-              fontSize="2xl"
-              fontWeight="bold"
-              bgGradient="linear(to-r, brand.300, blue.primary)"
-              bgClip="text"
-              mb={2}
-            >
+      <aside className="w-72 bg-[#16283F]/60 backdrop-blur-md border-r border-[#4EE3D8]/10 p-6 hidden md:block">
+        <div className="space-y-8">
+          <div>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-[#4EE3D8] to-[#2F5FA0] bg-clip-text text-transparent mb-2">
               HOPE
-            </Text>
-            <Text fontSize="sm" color="text.secondary">
-              Dashboard Analytics
-            </Text>
-          </Box>
+            </h1>
+            <p className="text-sm text-[#9BAEC8]">Dashboard Analytics</p>
+          </div>
 
-          <Divider borderColor="rgba(78, 227, 216, 0.1)" />
+          <div className="h-px bg-[#4EE3D8]/10" />
 
-          <VStack spacing={2} align="stretch">
-            <NavItem icon={FaHome} to="/">
+          <nav className="space-y-2">
+            <NavItem icon={Home} to="/">
               Inicio
             </NavItem>
-            <NavItem icon={FaChartBar} to="/dashboard">
+            <NavItem icon={BarChart3} to="/dashboard">
               Dashboard
             </NavItem>
-            <NavItem icon={FaBullseye} to="/#mission">
+            <NavItem icon={Target} to="/#mission">
               Misión & Visión
             </NavItem>
-            <NavItem icon={FaCog} to="/#tech">
+            <NavItem icon={Settings} to="/#tech">
               Tecnología
             </NavItem>
-          </VStack>
-        </VStack>
-      </Box>
+          </nav>
+        </div>
+      </aside>
 
       {/* Main content */}
-      <Box flex={1} overflowY="auto">
-        <Container maxW="container.xl" py={8}>
-          <VStack spacing={8} align="stretch">
+      <main className="flex-1 overflow-y-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="space-y-8">
             {/* Header */}
-            <Box>
-              <Heading size="2xl" color="text.primary" mb={2}>
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold text-[#E6E8EA] mb-2">
                 Panel de Control
-              </Heading>
-              <Text color="text.secondary" fontSize="lg">
+              </h1>
+              <p className="text-lg text-[#9BAEC8]">
                 Monitoreo de impacto y estadísticas en tiempo real
-              </Text>
-            </Box>
+              </p>
+            </div>
 
             {/* Stats Grid */}
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {statsData.map((stat) => (
                 <StatCard key={stat.id} {...stat} />
               ))}
-            </SimpleGrid>
+            </div>
 
             {/* Mission & Vision */}
-            <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={6}>
-              <InfoCard
-                title="Nuestra Misión"
-                content={missionData.mission}
-                icon={FaBullseye}
-              />
-              <InfoCard
-                title="Nuestra Visión"
-                content={missionData.vision}
-                icon={FaGlobeAmericas}
-              />
-            </SimpleGrid>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <InfoCard title="Nuestra Misión" content={missionData.mission} icon={Target} />
+              <InfoCard title="Nuestra Visión" content={missionData.vision} icon={Globe} />
+            </div>
 
             {/* Values */}
-            <Box
-              bg="rgba(30, 53, 82, 0.4)"
-              backdropFilter="blur(10px)"
-              p={8}
-              borderRadius="xl"
-              border="1px solid"
-              borderColor="rgba(78, 227, 216, 0.1)"
-              boxShadow="0 8px 32px rgba(0, 0, 0, 0.2)"
-            >
-              <Heading size="lg" color="text.primary" mb={6}>
-                Nuestros Valores
-              </Heading>
-              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
+            <div className="glass-card rounded-xl p-8">
+              <h2 className="text-2xl font-bold text-[#E6E8EA] mb-6">Nuestros Valores</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {missionData.values.map((value) => (
-                  <Box key={value.id}>
-                    <Text fontWeight="bold" color="brand.300" mb={2}>
-                      {value.title}
-                    </Text>
-                    <Text color="text.secondary" fontSize="sm">
-                      {value.description}
-                    </Text>
-                  </Box>
+                  <div key={value.id}>
+                    <h3 className="font-bold text-[#4EE3D8] mb-2">{value.title}</h3>
+                    <p className="text-sm text-[#9BAEC8]">{value.description}</p>
+                  </div>
                 ))}
-              </SimpleGrid>
-            </Box>
-          </VStack>
-        </Container>
-      </Box>
-    </Flex>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }
