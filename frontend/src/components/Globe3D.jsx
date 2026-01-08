@@ -96,35 +96,53 @@ export default function Globe3D() {
 
   return (
     <div className="w-full h-full relative flex items-center justify-center">
+      {/* Mano protésica robótica - debajo del globo */}
+      <div 
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-32 w-full max-w-lg z-0"
+      >
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: 'auto',
+            mixBlendMode: 'lighten'
+          }}
+        >
+          <img
+            src="https://images.pexels.com/photos/6153354/pexels-photo-6153354.jpeg"
+            alt="Mano protésica robótica"
+            className="w-full h-auto object-contain"
+            style={{
+              filter: 'drop-shadow(0 40px 80px rgba(78, 227, 216, 0.7)) brightness(1.3) contrast(1.5) saturate(0.8)',
+              transform: 'scaleX(-1) translateY(10px)',
+              clipPath: 'polygon(0 15%, 100% 15%, 100% 85%, 0 85%)',
+              backgroundColor: 'transparent'
+            }}
+          />
+          {/* Overlay para eliminar fondo blanco */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: '#0B0E11',
+              mixBlendMode: 'multiply',
+              pointerEvents: 'none'
+            }}
+          />
+        </div>
+      </div>
+      
+      {/* Globo encima de la mano */}
       <canvas
         ref={canvasRef}
         width={600}
         height={600}
-        className="w-full h-full"
+        className="w-full h-full relative z-10"
         style={{ maxWidth: '600px', maxHeight: '600px' }}
       />
-      
-      {/* Mano protésica robótica real */}
-      <div 
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-28 w-full max-w-md rounded-2xl overflow-hidden"
-        style={{
-          background: 'linear-gradient(180deg, rgba(11,14,17,0) 0%, rgba(11,14,17,0.8) 50%, rgba(11,14,17,1) 100%)'
-        }}
-      >
-        <img
-          src="https://images.pexels.com/photos/6153354/pexels-photo-6153354.jpeg"
-          alt="Mano protésica robótica"
-          className="w-full h-auto object-contain"
-          style={{
-            filter: 'drop-shadow(0 35px 70px rgba(78, 227, 216, 0.6)) brightness(1.05) contrast(1.2) saturate(0.95)',
-            transform: 'scaleX(-1)',
-            mixBlendMode: 'lighten',
-            opacity: 0.88,
-            maskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,1) 40%)',
-            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,1) 40%)'
-          }}
-        />
-      </div>
     </div>
   );
 }
