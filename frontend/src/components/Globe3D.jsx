@@ -96,24 +96,23 @@ export default function Globe3D() {
 
   return (
     <div className="w-full h-full relative flex items-center justify-center">
-      {/* Mano protésica robótica - debajo del globo */}
+      {/* Mano protésica robótica - detrás del globo (z-index bajo) */}
       <div 
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-36 w-full max-w-xl z-0"
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-40 w-full max-w-2xl z-0"
       >
         <img
-          src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a"
+          src="https://customer-assets.emergentagent.com/job_849a39b8-4272-44df-8d68-b82bf307c661/artifacts/f48dmzyj_Imagen_de_WhatsApp_2026-01-08_a_las_14.14.43_7fcb0dfa-removebg-preview.png"
           alt="Mano protésica robótica"
           className="w-full h-auto object-contain"
           style={{
-            filter: 'drop-shadow(0 50px 100px rgba(78, 227, 216, 0.8)) brightness(0.7) contrast(1.8) hue-rotate(180deg) saturate(1.5)',
-            transform: 'scaleX(-1) scaleY(1) rotate(-8deg)',
-            mixBlendMode: 'screen',
+            filter: 'drop-shadow(0 50px 100px rgba(78, 227, 216, 0.8)) brightness(0.95) contrast(1.1) hue-rotate(-10deg) saturate(1.2)',
+            transform: 'scaleX(1) scaleY(1)',
             opacity: 0.95
           }}
         />
       </div>
       
-      {/* Globo encima de la mano */}
+      {/* Globo delante de la mano (z-index alto) */}
       <canvas
         ref={canvasRef}
         width={600}
