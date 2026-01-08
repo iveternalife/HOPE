@@ -1,117 +1,62 @@
 import React from 'react';
-import {
-  Box,
-  Container,
-  Heading,
-  Text,
-  SimpleGrid,
-  VStack,
-  Icon
-} from '@chakra-ui/react';
+import { Brain, Hand, Battery, Settings, Box, Cpu } from 'lucide-react';
 import { techFeatures } from '../data/mockData';
-import { FaBrain, FaHand, FaBatteryFull, FaCog, FaCube, FaMicrochip } from 'react-icons/fa';
 
 const iconMap = {
-  brain: FaBrain,
-  hand: FaHand,
-  battery: FaBatteryFull,
-  settings: FaCog,
-  box: FaCube,
-  cpu: FaMicrochip
+  brain: Brain,
+  hand: Hand,
+  battery: Battery,
+  settings: Settings,
+  box: Box,
+  cpu: Cpu,
 };
 
 export default function TechSection() {
   return (
-    <Box id="tech" py={20} bg="bg.primary" position="relative">
+    <section id="tech" className="py-20 relative">
       {/* Background gradient */}
-      <Box
-        position="absolute"
-        top="0"
-        left="50%"
-        transform="translateX(-50%)"
-        w="600px"
-        h="600px"
-        bg="radial-gradient(circle, rgba(78, 227, 216, 0.05) 0%, transparent 70%)"
-        filter="blur(80px)"
+      <div
+        className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px]"
+        style={{
+          background: 'radial-gradient(circle, rgba(78, 227, 216, 0.05) 0%, transparent 70%)',
+          filter: 'blur(80px)',
+        }}
       />
 
-      <Container maxW="container.xl" position="relative" zIndex={1}>
-        <VStack spacing={12}>
-          <Box textAlign="center">
-            <Text
-              fontSize="sm"
-              fontWeight="semibold"
-              color="brand.300"
-              letterSpacing="wider"
-              textTransform="uppercase"
-              mb={4}
-            >
-              Tecnología Avanzada
-            </Text>
-            <Heading size="2xl" color="text.primary" mb={4}>
-              Innovación que Marca la Diferencia
-            </Heading>
-            <Text fontSize="lg" color="text.secondary" maxW="700px" mx="auto">
-              Nuestras prótesis robóticas integran tecnología de última generación para ofrecer funcionalidad, comodidad y accesibilidad sin precedentes.
-            </Text>
-          </Box>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-12">
+          <p className="text-sm font-semibold text-[#4EE3D8] tracking-wider uppercase mb-4">
+            Tecnología Avanzada
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#E6E8EA] mb-4">
+            Innovación que Marca la Diferencia
+          </h2>
+          <p className="text-lg text-[#9BAEC8] max-w-3xl mx-auto">
+            Nuestras prótesis robóticas integran tecnología de última generación para ofrecer
+            funcionalidad, comodidad y accesibilidad sin precedentes.
+          </p>
+        </div>
 
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} w="full">
-            {techFeatures.map((feature) => {
-              const IconComponent = iconMap[feature.icon] || FaMicrochip;
-              return (
-                <Box
-                  key={feature.id}
-                  bg="rgba(30, 53, 82, 0.4)"
-                  backdropFilter="blur(10px)"
-                  p={8}
-                  borderRadius="xl"
-                  border="1px solid"
-                  borderColor="rgba(78, 227, 216, 0.1)"
-                  boxShadow="0 8px 32px rgba(0, 0, 0, 0.2)"
-                  position="relative"
-                  overflow="hidden"
-                  transition="all 0.3s ease"
-                  _hover={{
-                    transform: 'translateY(-8px)',
-                    boxShadow: '0 12px 40px rgba(78, 227, 216, 0.2)',
-                    borderColor: 'brand.300'
-                  }}
-                >
-                  {/* Animated glow */}
-                  <Box
-                    position="absolute"
-                    top="-100%"
-                    left="-100%"
-                    w="200%"
-                    h="200%"
-                    bg="radial-gradient(circle, rgba(78, 227, 216, 0.05) 0%, transparent 50%)"
-                    opacity={0}
-                    transition="opacity 0.3s ease"
-                    _groupHover={{ opacity: 1 }}
-                  />
-
-                  <VStack spacing={5} align="flex-start" position="relative" zIndex={1}>
-                    <Box
-                      p={3}
-                      bg="rgba(78, 227, 216, 0.1)"
-                      borderRadius="lg"
-                    >
-                      <Icon as={IconComponent} boxSize={8} color="brand.300" />
-                    </Box>
-                    <Heading size="md" color="text.primary">
-                      {feature.title}
-                    </Heading>
-                    <Text color="text.secondary" fontSize="sm" lineHeight="tall">
-                      {feature.description}
-                    </Text>
-                  </VStack>
-                </Box>
-              );
-            })}
-          </SimpleGrid>
-        </VStack>
-      </Container>
-    </Box>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {techFeatures.map((feature) => {
+            const IconComponent = iconMap[feature.icon] || Cpu;
+            return (
+              <div
+                key={feature.id}
+                className="glass-card rounded-xl p-8 hover:-translate-y-2 smooth-transition group relative overflow-hidden"
+              >
+                <div className="space-y-5 relative z-10">
+                  <div className="inline-block p-3 bg-[#4EE3D8]/10 rounded-lg">
+                    <IconComponent className="text-[#4EE3D8]" size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#E6E8EA]">{feature.title}</h3>
+                  <p className="text-sm text-[#9BAEC8] leading-relaxed">{feature.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }
