@@ -1,112 +1,65 @@
 import React from 'react';
-import {
-  Box,
-  Container,
-  Heading,
-  Text,
-  SimpleGrid,
-  VStack,
-  Icon,
-  Badge
-} from '@chakra-ui/react';
+import { Activity, Users, Globe, TrendingDown } from 'lucide-react';
 import { statsData } from '../data/mockData';
-import { FaRobot, FaUsers, FaGlobeAmericas, FaChartLine } from 'react-icons/fa';
+import { Badge } from './ui/badge';
 
 const iconMap = {
-  robot: FaRobot,
-  users: FaUsers,
-  globe: FaGlobeAmericas,
-  'trending-down': FaChartLine
+  robot: Activity,
+  users: Users,
+  globe: Globe,
+  'trending-down': TrendingDown,
 };
 
 export default function StatsSection() {
   return (
-    <Box py={20} bg="bg.primary" position="relative">
-      <Container maxW="container.xl">
-        <VStack spacing={12}>
-          <Box textAlign="center">
-            <Text
-              fontSize="sm"
-              fontWeight="semibold"
-              color="brand.300"
-              letterSpacing="wider"
-              textTransform="uppercase"
-              mb={4}
-            >
-              Impacto Global
-            </Text>
-            <Heading size="2xl" color="text.primary" mb={4}>
-              Transformando Vidas
-            </Heading>
-            <Text fontSize="lg" color="text.secondary" maxW="600px" mx="auto">
-              Nuestro compromiso con la accesibilidad y la innovación está generando un impacto real en comunidades vulnerables.
-            </Text>
-          </Box>
+    <section className="py-20 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <p className="text-sm font-semibold text-[#4EE3D8] tracking-wider uppercase mb-4">
+            Impacto Global
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#E6E8EA] mb-4">
+            Transformando Vidas
+          </h2>
+          <p className="text-lg text-[#9BAEC8] max-w-2xl mx-auto">
+            Nuestro compromiso con la accesibilidad y la innovación está generando un impacto
+            real en comunidades vulnerables.
+          </p>
+        </div>
 
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6} w="full">
-            {statsData.map((stat) => {
-              const IconComponent = iconMap[stat.icon] || FaRobot;
-              return (
-                <Box
-                  key={stat.id}
-                  bg="rgba(30, 53, 82, 0.4)"
-                  backdropFilter="blur(10px)"
-                  p={8}
-                  borderRadius="xl"
-                  border="1px solid"
-                  borderColor="rgba(78, 227, 216, 0.1)"
-                  boxShadow="0 8px 32px rgba(0, 0, 0, 0.2)"
-                  position="relative"
-                  overflow="hidden"
-                  transition="all 0.3s ease"
-                  _hover={{
-                    transform: 'translateY(-8px)',
-                    boxShadow: '0 12px 40px rgba(78, 227, 216, 0.2)',
-                    borderColor: 'brand.300'
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {statsData.map((stat) => {
+            const IconComponent = iconMap[stat.icon] || Activity;
+            return (
+              <div
+                key={stat.id}
+                className="glass-card rounded-xl p-8 hover:-translate-y-2 smooth-transition relative overflow-hidden group"
+              >
+                {/* Glow effect */}
+                <div
+                  className="absolute -top-1/2 -right-1/2 w-48 h-48 opacity-0 group-hover:opacity-100 smooth-transition"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(78, 227, 216, 0.1) 0%, transparent 70%)',
+                    filter: 'blur(40px)',
                   }}
-                >
-                  {/* Glow effect */}
-                  <Box
-                    position="absolute"
-                    top="-50%"
-                    right="-50%"
-                    w="200px"
-                    h="200px"
-                    bg="radial-gradient(circle, rgba(78, 227, 216, 0.1) 0%, transparent 70%)"
-                    filter="blur(40px)"
-                  />
+                />
 
-                  <VStack spacing={4} align="flex-start" position="relative" zIndex={1}>
-                    <Icon as={IconComponent} boxSize={10} color="brand.300" />
-                    <Box>
-                      <Text fontSize="4xl" fontWeight="bold" color="text.primary">
-                        {stat.value}
-                      </Text>
-                      <Text fontSize="md" color="text.secondary" fontWeight="semibold">
-                        {stat.title}
-                      </Text>
-                    </Box>
-                    <Badge
-                      colorScheme="green"
-                      fontSize="xs"
-                      px={2}
-                      py={1}
-                      borderRadius="md"
-                      bg="rgba(78, 227, 216, 0.1)"
-                      color="brand.300"
-                    >
-                      {stat.trend}
-                    </Badge>
-                    <Text fontSize="sm" color="text.secondary">
-                      {stat.description}
-                    </Text>
-                  </VStack>
-                </Box>
-              );
-            })}
-          </SimpleGrid>
-        </VStack>
-      </Container>
-    </Box>
+                <div className="space-y-4 relative z-10">
+                  <IconComponent className="text-[#4EE3D8]" size={40} />
+                  <div>
+                    <div className="text-4xl font-bold text-[#E6E8EA]">{stat.value}</div>
+                    <div className="text-md text-[#9BAEC8] font-semibold">{stat.title}</div>
+                  </div>
+                  <Badge className="bg-[#4EE3D8]/10 text-[#4EE3D8] hover:bg-[#4EE3D8]/20">
+                    {stat.trend}
+                  </Badge>
+                  <p className="text-sm text-[#9BAEC8]">{stat.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }
