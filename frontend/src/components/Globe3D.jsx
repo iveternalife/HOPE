@@ -98,7 +98,10 @@ export default function Globe3D() {
     <div className="w-full h-full relative flex items-center justify-center">
       {/* Mano protésica robótica - detrás del globo (z-index bajo) */}
       <div 
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-40 w-full max-w-2xl z-0"
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-64 w-full max-w-4xl z-0"
+        style={{
+          clipPath: 'polygon(0 0, 100% 0, 100% 75%, 0 75%)'
+        }}
       >
         <img
           src="https://customer-assets.emergentagent.com/job_849a39b8-4272-44df-8d68-b82bf307c661/artifacts/f48dmzyj_Imagen_de_WhatsApp_2026-01-08_a_las_14.14.43_7fcb0dfa-removebg-preview.png"
@@ -106,7 +109,7 @@ export default function Globe3D() {
           className="w-full h-auto object-contain"
           style={{
             filter: 'drop-shadow(0 50px 100px rgba(78, 227, 216, 0.8)) brightness(0.95) contrast(1.1) hue-rotate(-10deg) saturate(1.2)',
-            transform: 'scaleX(1) scaleY(1)',
+            transform: 'scaleX(1) scaleY(1) translateY(-80px)',
             opacity: 0.95
           }}
         />
