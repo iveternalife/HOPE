@@ -98,41 +98,19 @@ export default function Globe3D() {
     <div className="w-full h-full relative flex items-center justify-center">
       {/* Mano protésica robótica - debajo del globo */}
       <div 
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-32 w-full max-w-lg z-0"
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-36 w-full max-w-xl z-0"
       >
-        <div
+        <img
+          src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a"
+          alt="Mano protésica robótica"
+          className="w-full h-auto object-contain"
           style={{
-            position: 'relative',
-            width: '100%',
-            height: 'auto',
-            mixBlendMode: 'lighten'
+            filter: 'drop-shadow(0 50px 100px rgba(78, 227, 216, 0.8)) brightness(0.7) contrast(1.8) hue-rotate(180deg) saturate(1.5)',
+            transform: 'scaleX(-1) scaleY(1) rotate(-8deg)',
+            mixBlendMode: 'screen',
+            opacity: 0.95
           }}
-        >
-          <img
-            src="https://images.pexels.com/photos/6153354/pexels-photo-6153354.jpeg"
-            alt="Mano protésica robótica"
-            className="w-full h-auto object-contain"
-            style={{
-              filter: 'drop-shadow(0 40px 80px rgba(78, 227, 216, 0.7)) brightness(1.3) contrast(1.5) saturate(0.8)',
-              transform: 'scaleX(-1) translateY(10px)',
-              clipPath: 'polygon(0 15%, 100% 15%, 100% 85%, 0 85%)',
-              backgroundColor: 'transparent'
-            }}
-          />
-          {/* Overlay para eliminar fondo blanco */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              background: '#0B0E11',
-              mixBlendMode: 'multiply',
-              pointerEvents: 'none'
-            }}
-          />
-        </div>
+        />
       </div>
       
       {/* Globo encima de la mano */}
