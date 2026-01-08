@@ -1,114 +1,121 @@
-import React from 'react';
-import {
-  Box,
-  Flex,
-  HStack,
-  Button,
-  useDisclosure,
-  Stack,
-  IconButton,
-  Container
-} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-
-const NavLink = ({ children, to }) => {
-  const location = useLocation();
-  const isActive = location.pathname === to;
-
-  return (
-    <Box
-      as={RouterLink}
-      to={to}
-      px={3}
-      py={2}
-      rounded={'md'}
-      color={isActive ? 'brand.300' : 'text.secondary'}
-      fontWeight={isActive ? 'semibold' : 'normal'}
-      _hover={{
-        textDecoration: 'none',
-        color: 'brand.300',
-        transform: 'translateY(-2px)',
-      }}
-      transition="all 0.3s ease"
-    >
-      {children}
-    </Box>
-  );
-};
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { Button } from './ui/button';
 
 export default function Navbar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <Box
-      bg="rgba(11, 14, 17, 0.8)"
-      backdropFilter="blur(10px)"
-      px={4}
-      position="fixed"
-      w="100%"
-      zIndex={1000}
-      borderBottom="1px solid"
-      borderColor="rgba(78, 227, 216, 0.1)"
-    >
-      <Container maxW="container.xl">
-        <Flex h={20} alignItems={'center'} justifyContent={'space-between'}>
-          <HStack spacing={8} alignItems={'center'}>
-            <Box
-              as={RouterLink}
+    <nav className="fixed top-0 w-full z-50 bg-[#0B0E11]/80 backdrop-blur-md border-b border-[#4EE3D8]/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link
+            to="/"
+            className="text-2xl font-bold bg-gradient-to-r from-[#4EE3D8] to-[#2F5FA0] bg-clip-text text-transparent hover:scale-105 transition-transform"
+          >
+            HOPE
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link
               to="/"
-              fontSize="2xl"
-              fontWeight="bold"
-              bgGradient="linear(to-r, brand.300, blue.primary)"
-              bgClip="text"
-              _hover={{ transform: 'scale(1.05)' }}
-              transition="transform 0.3s ease"
+              className={`text-lg smooth-transition ${
+                isActive('/')
+                  ? 'text-[#4EE3D8] font-semibold'
+                  : 'text-[#9BAEC8] hover:text-[#4EE3D8]'
+              }`}
             >
-              {/* Espacio para logo - usuario lo integrará después */}
-              HOPE
-            </Box>
-            <HStack as={'nav'} spacing={6} display={{ base: 'none', md: 'flex' }}>
-              <NavLink to="/">Inicio</NavLink>
-              <NavLink to="/dashboard">Dashboard</NavLink>
-              <NavLink to="/#mission">Misión</NavLink>
-              <NavLink to="/#tech">Tecnología</NavLink>
-            </HStack>
-          </HStack>
-          <Flex alignItems={'center'} display={{ base: 'none', md: 'flex' }}>
+              Inicio
+            </Link>
+            <Link
+              to="/dashboard"
+              className={`text-lg smooth-transition ${
+                isActive('/dashboard')
+                  ? 'text-[#4EE3D8] font-semibold'
+                  : 'text-[#9BAEC8] hover:text-[#4EE3D8]'
+              }`}
+            >
+              Dashboard
+            </Link>
+            <a
+              href="#mission"
+              className="text-lg text-[#9BAEC8] hover:text-[#4EE3D8] smooth-transition"
+            >
+              Misión
+            </a>
+            <a
+              href="#tech"
+              className="text-lg text-[#9BAEC8] hover:text-[#4EE3D8] smooth-transition"
+            >
+              Tecnología
+            </a>
             <Button
-              variant={'solid'}
-              size={'md'}
-              mr={4}
+              className="bg-[#4EE3D8] text-[#0B0E11] hover:bg-[#4EE3D8]/90 hover:scale-105 smooth-transition"
             >
               Apoyar la Iniciativa
             </Button>
-          </Flex>
-          <IconButton
-            size={'md'}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
-            onClick={isOpen ? onClose : onOpen}
-            bg="transparent"
-            color="brand.300"
-            _hover={{ bg: 'rgba(78, 227, 216, 0.1)' }}
-          />
-        </Flex>
+          </div>
 
-        {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
-              <NavLink to="/">Inicio</NavLink>
-              <NavLink to="/dashboard">Dashboard</NavLink>
-              <NavLink to="/#mission">Misión</NavLink>
-              <NavLink to="/#tech">Tecnología</NavLink>
-              <Button variant={'solid'} size={'sm'} w="full">
-                Apoyar la Iniciativa
-              </Button>
-            </Stack>
-          </Box>
-        ) : null}
-      </Container>
-    </Box>
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-[#4EE3D8] hover:bg-[#4EE3D8]/10 p-2 rounded-lg smooth-transition"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="md:hidden pb-4 space-y-4">
+            <Link
+              to="/"
+              onClick={() => setIsOpen(false)}
+              className={`block text-lg ${
+                isActive('/')
+                  ? 'text-[#4EE3D8] font-semibold'
+                  : 'text-[#9BAEC8]'
+              }`}
+            >
+              Inicio
+            </Link>
+            <Link
+              to="/dashboard"
+              onClick={() => setIsOpen(false)}
+              className={`block text-lg ${
+                isActive('/dashboard')
+                  ? 'text-[#4EE3D8] font-semibold'
+                  : 'text-[#9BAEC8]'
+              }`}
+            >
+              Dashboard
+            </Link>
+            <a
+              href="#mission"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg text-[#9BAEC8]"
+            >
+              Misión
+            </a>
+            <a
+              href="#tech"
+              onClick={() => setIsOpen(false)}
+              className="block text-lg text-[#9BAEC8]"
+            >
+              Tecnología
+            </a>
+            <Button className="w-full bg-[#4EE3D8] text-[#0B0E11] hover:bg-[#4EE3D8]/90">
+              Apoyar la Iniciativa
+            </Button>
+          </div>
+        )}
+      </div>
+    </nav>
   );
 }

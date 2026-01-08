@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere, MeshDistortMaterial } from '@react-three/drei';
-import { Box } from '@chakra-ui/react';
 
 function RotatingGlobe() {
   const meshRef = useRef();
@@ -47,13 +46,13 @@ function RotatingGlobe() {
 
 export default function Globe3D() {
   return (
-    <Box w="100%" h="100%" position="relative">
+    <div className="w-full h-full relative">
       <Canvas
         camera={{ position: [0, 0, 6], fov: 50 }}
         style={{ background: 'transparent' }}
       >
         <RotatingGlobe />
       </Canvas>
-    </Box>
+    </div>
   );
 }

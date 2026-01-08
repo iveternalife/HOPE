@@ -1,110 +1,100 @@
 import React from 'react';
-import {
-  Box,
-  Container,
-  Stack,
-  Text,
-  Link,
-  Flex,
-  Icon,
-  Divider
-} from '@chakra-ui/react';
-import { FaGithub, FaTwitter, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <Box
-      bg="bg.primary"
-      borderTop="1px solid"
-      borderColor="rgba(78, 227, 216, 0.1)"
-      mt={20}
-    >
-      <Container maxW="container.xl" py={10}>
-        <Stack spacing={8}>
-          <Flex
-            direction={{ base: 'column', md: 'row' }}
-            justify="space-between"
-            align={{ base: 'center', md: 'flex-start' }}
-            gap={8}
-          >
-            <Stack spacing={4} align={{ base: 'center', md: 'flex-start' }}>
-              <Text
-                fontSize="2xl"
-                fontWeight="bold"
-                bgGradient="linear(to-r, brand.300, blue.primary)"
-                bgClip="text"
+    <footer className="bg-[#0B0E11] border-t border-[#4EE3D8]/10 mt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Brand */}
+          <div className="space-y-4">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-[#4EE3D8] to-[#2F5FA0] bg-clip-text text-transparent">
+              HOPE
+            </h3>
+            <p className="text-[#9BAEC8] text-sm max-w-xs">
+              Tecnología que devuelve autonomía. Prótesis robóticas accesibles para todos.
+            </p>
+          </div>
+
+          {/* Enlaces */}
+          <div className="space-y-4">
+            <h4 className="font-semibold text-[#E6E8EA]">Enlaces</h4>
+            <div className="space-y-2">
+              <a href="#mission" className="block text-[#9BAEC8] hover:text-[#4EE3D8] smooth-transition">
+                Misión
+              </a>
+              <a href="#tech" className="block text-[#9BAEC8] hover:text-[#4EE3D8] smooth-transition">
+                Tecnología
+              </a>
+              <a href="/dashboard" className="block text-[#9BAEC8] hover:text-[#4EE3D8] smooth-transition">
+                Dashboard
+              </a>
+            </div>
+          </div>
+
+          {/* Contacto */}
+          <div className="space-y-4">
+            <h4 className="font-semibold text-[#E6E8EA]">Contacto</h4>
+            <div className="space-y-2">
+              <a
+                href="mailto:info@hope-prosthetics.org"
+                className="block text-[#9BAEC8] hover:text-[#4EE3D8] smooth-transition text-sm"
               >
-                HOPE
-              </Text>
-              <Text color="text.secondary" fontSize="sm" maxW="300px" textAlign={{ base: 'center', md: 'left' }}>
-                Tecnología que devuelve autonomía.
-                Prótesis robóticas accesibles para todos.
-              </Text>
-            </Stack>
+                info@hope-prosthetics.org
+              </a>
+              <p className="text-[#9BAEC8] text-sm">+1 (555) 123-4567</p>
+            </div>
+          </div>
 
-            <Stack spacing={4} align={{ base: 'center', md: 'flex-start' }}>
-              <Text fontWeight="semibold" color="text.primary">Enlaces</Text>
-              <Stack spacing={2} align={{ base: 'center', md: 'flex-start' }}>
-                <Link href="/#mission" color="text.secondary" _hover={{ color: 'brand.300' }}>Misión</Link>
-                <Link href="/#tech" color="text.secondary" _hover={{ color: 'brand.300' }}>Tecnología</Link>
-                <Link href="/dashboard" color="text.secondary" _hover={{ color: 'brand.300' }}>Dashboard</Link>
-              </Stack>
-            </Stack>
+          {/* Redes sociales */}
+          <div className="space-y-4">
+            <h4 className="font-semibold text-[#E6E8EA]">Síguenos</h4>
+            <div className="flex space-x-4">
+              <a
+                href="#"
+                className="text-[#9BAEC8] hover:text-[#4EE3D8] hover:-translate-y-1 smooth-transition"
+              >
+                <Github size={24} />
+              </a>
+              <a
+                href="#"
+                className="text-[#9BAEC8] hover:text-[#4EE3D8] hover:-translate-y-1 smooth-transition"
+              >
+                <Twitter size={24} />
+              </a>
+              <a
+                href="#"
+                className="text-[#9BAEC8] hover:text-[#4EE3D8] hover:-translate-y-1 smooth-transition"
+              >
+                <Linkedin size={24} />
+              </a>
+              <a
+                href="#"
+                className="text-[#9BAEC8] hover:text-[#4EE3D8] hover:-translate-y-1 smooth-transition"
+              >
+                <Mail size={24} />
+              </a>
+            </div>
+          </div>
+        </div>
 
-            <Stack spacing={4} align={{ base: 'center', md: 'flex-start' }}>
-              <Text fontWeight="semibold" color="text.primary">Contacto</Text>
-              <Stack spacing={2} align={{ base: 'center', md: 'flex-start' }}>
-                <Link href="mailto:info@hope-prosthetics.org" color="text.secondary" _hover={{ color: 'brand.300' }}>
-                  info@hope-prosthetics.org
-                </Link>
-                <Text color="text.secondary" fontSize="sm">+1 (555) 123-4567</Text>
-              </Stack>
-            </Stack>
-
-            <Stack spacing={4} align={{ base: 'center', md: 'flex-start' }}>
-              <Text fontWeight="semibold" color="text.primary">Síguenos</Text>
-              <Flex gap={4}>
-                <Link href="#" _hover={{ color: 'brand.300', transform: 'translateY(-2px)' }} transition="all 0.3s">
-                  <Icon as={FaGithub} boxSize={6} color="text.secondary" />
-                </Link>
-                <Link href="#" _hover={{ color: 'brand.300', transform: 'translateY(-2px)' }} transition="all 0.3s">
-                  <Icon as={FaTwitter} boxSize={6} color="text.secondary" />
-                </Link>
-                <Link href="#" _hover={{ color: 'brand.300', transform: 'translateY(-2px)' }} transition="all 0.3s">
-                  <Icon as={FaLinkedin} boxSize={6} color="text.secondary" />
-                </Link>
-                <Link href="#" _hover={{ color: 'brand.300', transform: 'translateY(-2px)' }} transition="all 0.3s">
-                  <Icon as={FaEnvelope} boxSize={6} color="text.secondary" />
-                </Link>
-              </Flex>
-            </Stack>
-          </Flex>
-
-          <Divider borderColor="rgba(78, 227, 216, 0.1)" />
-
-          <Flex
-            direction={{ base: 'column', md: 'row' }}
-            justify="space-between"
-            align="center"
-            gap={4}
-          >
-            <Text fontSize="sm" color="text.secondary">
-              © 2025 HOPE Robotic Prosthetics. Todos los derechos reservados.
-            </Text>
-            <Flex gap={6}>
-              <Link href="#" fontSize="sm" color="text.secondary" _hover={{ color: 'brand.300' }}>
-                Privacidad
-              </Link>
-              <Link href="#" fontSize="sm" color="text.secondary" _hover={{ color: 'brand.300' }}>
-                Términos
-              </Link>
-              <Link href="#" fontSize="sm" color="text.secondary" _hover={{ color: 'brand.300' }}>
-                Cookies
-              </Link>
-            </Flex>
-          </Flex>
-        </Stack>
-      </Container>
-    </Box>
+        <div className="mt-12 pt-8 border-t border-[#4EE3D8]/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[#9BAEC8] text-sm">
+            © 2025 HOPE Robotic Prosthetics. Todos los derechos reservados.
+          </p>
+          <div className="flex space-x-6">
+            <a href="#" className="text-[#9BAEC8] hover:text-[#4EE3D8] text-sm smooth-transition">
+              Privacidad
+            </a>
+            <a href="#" className="text-[#9BAEC8] hover:text-[#4EE3D8] text-sm smooth-transition">
+              Términos
+            </a>
+            <a href="#" className="text-[#9BAEC8] hover:text-[#4EE3D8] text-sm smooth-transition">
+              Cookies
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
